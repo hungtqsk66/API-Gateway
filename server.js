@@ -8,15 +8,8 @@ const {join}  = require('path');
 const fs = require('fs');
 
 
-app.use(helmet({
-    crossOriginResourcePolicy: false,
-    contentSecurityPolicy: {
-        directives: {
-        defaultSrc: ["http://nth-audio.site"],
-        connectSrc: ["*", 'http://localhost:3000','http://nth-audio.site'],
-        scriptSrc: ["*", "'unsafe-inline'"],
-    }
-}}));
+app.use(helmet({crossOriginResourcePolicy: false}));
+
 app.use(cors({
     allowedHeaders: '*',
     origin: '*',
