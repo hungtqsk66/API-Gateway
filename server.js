@@ -8,7 +8,15 @@ const {join}  = require('path');
 const fs = require('fs');
 
 
-app.use(helmet({crossOriginResourcePolicy: false}));
+app.use(helmet({
+    crossOriginResourcePolicy: false,
+    contentSecurityPolicy: {
+        directives: {
+        defaultSrc: ["http://nth-audio.site"],
+        connectSrc: ["*", 'http://localhost:3000','http://nth-audio.site'],
+        scriptSrc: ["*", "'unsafe-inline'"],
+    }
+}}));
 app.use(cors({
     allowedHeaders: '*',
     origin: '*',
@@ -20,6 +28,9 @@ app.use(morgan('combined',{stream:fs.createWriteStream(join(__dirname,'./logs/ac
 app.use(express.static(join(__dirname, './public')));
 app.use('/api/ml-server/*',createProxyMiddleware({target:'http://127.0.0.1:8000',changeOrigin:true}));
 app.use('/api/audio-server/*',createProxyMiddleware({target:'http://127.0.0.1:4000',changeOrigin:true}));
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname,'./public/index.html'));
+});
 
 app.listen(3000,()=>console.log('API gateway listen on port 3000'));
 
