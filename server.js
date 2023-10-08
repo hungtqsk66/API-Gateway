@@ -12,7 +12,8 @@ app.use(helmet({crossOriginResourcePolicy: false}));
 app.use(helmet.contentSecurityPolicy({
     directives: {
         defaultSrc: ["'self'"],
-        scriptSrc:["'self'", "https://kit.fontawesome.com"]
+        scriptSrc:["'self'", "'unsafe-inline'","https://kit.fontawesome.com"],
+        styleSrc:["'self'", "'unsafe-inline'","https://ka-f.fontawesome.com"]
     }
 }));
 
