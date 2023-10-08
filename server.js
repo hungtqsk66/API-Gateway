@@ -9,6 +9,12 @@ const fs = require('fs');
 
 
 app.use(helmet({crossOriginResourcePolicy: false}));
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc:["'self'", "https://kit.fontawesome.com"]
+    }
+}));
 
 app.use(cors({
     allowedHeaders: '*',
