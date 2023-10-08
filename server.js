@@ -11,7 +11,7 @@ const fs = require('fs');
 app.use(helmet({crossOriginResourcePolicy: false}));
 app.use(helmet.contentSecurityPolicy({
     directives: {
-        defaultSrc: ["'self'"],
+        defaultSrc: ["'self'","*.fontawesome.com"],
         scriptSrc:["'self'", "'unsafe-inline'","*.fontawesome.com"],
         styleSrc:["'self'", "'unsafe-inline'","*.fontawesome.com"]
     }
