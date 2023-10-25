@@ -15,7 +15,9 @@ app.use(cors({
 }
 ));
 
-app.use('/api/ml-server/*',createProxyMiddleware({target:'http://127.0.0.1:8000',changeOrigin:true}));
+app.use('/ml-server/*',createProxyMiddleware({target:'http://127.0.0.1:8000',changeOrigin:true}));
+app.use('/audio-server/*',createProxyMiddleware({target:'http://127.0.0.1:4000',changeOrigin:true}));
+
 
 app.listen(3000,()=>console.log('API gateway listen on port 3000'));
 
